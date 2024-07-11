@@ -41,6 +41,8 @@ export default function ProductsPage() {
         position: 'relative',
     }));
     useEffect(() => {
+        console.log(BASE_URL);
+        
         const localProducts = localStorage.getItem('Products')
         if (localProducts) {
             console.log("Local storage");
