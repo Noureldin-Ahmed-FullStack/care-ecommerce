@@ -28,8 +28,8 @@ interface ProdObj {
     // Add other properties as needed
 }
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || '';
 export default function ProductsPage() {
+    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
     const [Products, setProducts] = useState<ProdObj[]>([])
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: '#1A2027',
