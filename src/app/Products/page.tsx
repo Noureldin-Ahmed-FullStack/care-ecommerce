@@ -1,7 +1,7 @@
 "use client";
 import { Grid, Paper, styled, Tooltip } from '@mui/material';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Zoom from '@mui/material/Zoom';
 import './style.css'
 interface NestedObject {
