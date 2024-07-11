@@ -28,7 +28,7 @@ interface ProdObj {
     // Add other properties as needed
 }
 
-const BASE_URL = process.env.BASE_URL
+const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 export default function ProductsPage() {
     const [Products, setProducts] = useState<ProdObj[]>([])
     const Item = styled(Paper)(({ theme }) => ({
@@ -41,7 +41,6 @@ export default function ProductsPage() {
         position: 'relative',
     }));
     useEffect(() => {
-        console.log(BASE_URL);
         
         const localProducts = localStorage.getItem('Products')
         if (localProducts) {
@@ -49,7 +48,7 @@ export default function ProductsPage() {
             setProducts(JSON.parse(localProducts))
         } else {
             console.log("Fetching Data");
-            axios.get(`${BASE_URL}/products`)
+            axios.get(`${NEXT_PUBLIC_BASE_URL}/products`)
                 .then(response => {
                     console.log('Products:', response.data.data);
                     localStorage.setItem('Products', JSON.stringify(response.data.data))
