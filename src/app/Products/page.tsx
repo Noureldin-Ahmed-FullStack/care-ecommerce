@@ -30,7 +30,8 @@ interface ProdObj {
 
 const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 export default function ProductsPage() {
-    const [Products, setProducts] = useState<ProdObj[]>([])
+    const [Products, setProducts] = useState<ProdObj[]>([]);
+    const [SearchQuerry, setSearchQuerry] = useState<string>('');
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: '#1A2027',
         ...theme.typography.body2,
@@ -41,7 +42,7 @@ export default function ProductsPage() {
         position: 'relative',
     }));
     useEffect(() => {
-        
+
         const localProducts = localStorage.getItem('Products')
         if (localProducts) {
             console.log("Local storage");
@@ -60,11 +61,23 @@ export default function ProductsPage() {
         }
 
     }, [])
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchQuerry(event.target.value);
+    };
+    const filteredItems = SearchQuerry
+        ? Products.filter(
+            (item) =>
+                item.title.toLowerCase().includes(SearchQuerry.toLowerCase())
+        )
+        : Products;
     return (
         <div className='w-full items-center flex flex-col my-10 '>
             <div className="container">
+                <h1 className="text-center mb-4">Shopping cart</h1>
+                <input type="text" placeholder="Search" className="mb-5 opacity-80 hover:opacity-100 transition-all	 focus:opacity-100 w-full shadow appearance-none rounded py-2 px-3 text-gray-700 leading-tight border-transparent  hover:border-gray-300 border-2 focus:border-blue-300 focus:outline-none focus:shadow-outline" onChange={handleSearchChange} />
                 <Grid container rowSpacing={3} columnSpacing={3}>
-                    {Products?.map((product) => (
+                    {filteredItems?.map((product) => (
                         <Grid key={product.id} item xs={12} sm={4} md={4} lg={2} className="">
                             {/* <div className=" p-3">{product.title}</div> */}
                             <Item className="BorderSettings">
