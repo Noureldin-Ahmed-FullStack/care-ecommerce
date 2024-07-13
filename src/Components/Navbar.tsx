@@ -21,11 +21,7 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-    const darkTheme = createTheme({
-        palette: {
-            mode: 'dark',
-        },
-    });
+   
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -43,7 +39,6 @@ function Navbar() {
 
     return (
 
-        <ThemeProvider theme={darkTheme}>
             <AppBar position="static">
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
@@ -173,7 +168,6 @@ function Navbar() {
                     </Toolbar>
                 </Container>
             </AppBar>
-        </ThemeProvider>
     );
 }
 export default Navbar;

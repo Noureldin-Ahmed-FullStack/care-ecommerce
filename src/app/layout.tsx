@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/Components/Navbar";
+import ThemeRegistry from "@/Components/ThemeRegistery";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,11 +18,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className+' ' + 'bg-gray-800 min-h-screen'} suppressHydrationWarning={true}>
-      <Navbar />
+      <body className={inter.className + ' ' + 'bg-gray-800 min-h-screen'} suppressHydrationWarning={true}>
+        <ThemeRegistry>
 
-        {children}
-        </body>
+          <Navbar />
+
+          {children}
+        </ThemeRegistry>
+      </body>
     </html>
   );
 }
